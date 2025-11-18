@@ -1,0 +1,68 @@
+:root{--bg:#0f1724;--card:#0b1220;--accent:#7c3aed;--muted:#94a3b8}
+*{box-sizing:border-box}
+html,body,#root{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,Arial}
+body{background:linear-gradient(180deg,#071029 0%, #071322 100%);color:#e6eef8}
+.app-root{display:flex;align-items:center;justify-content:center;height:100%;padding:24px}
+.chat-container{width:100%;max-width:920px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+
+/* Lover-style romantic tweak */
+body::before{content:'';position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:0;background:radial-gradient(circle at 20% 10%, rgba(124,58,237,0.08), transparent 10%), radial-gradient(circle at 80% 80%, rgba(255,99,132,0.05), transparent 12%)}
+.chat-container{position:relative;overflow:visible}
+.floating-bubble{position:absolute;pointer-events:none;border-radius:50%;filter:blur(14px);opacity:0.12}
+.bubble-1{width:160px;height:160px;left:-40px;top:-40px;background:linear-gradient(45deg, rgba(124,58,237,0.28), rgba(255,99,132,0.08));animation:floaty 8s ease-in-out infinite}
+.bubble-2{width:80px;height:80px;right:-20px;bottom:20px;background:linear-gradient(45deg, rgba(56,189,248,0.12), rgba(124,58,237,0.18));animation:floaty 10s ease-in-out infinite}
+
+@keyframes floaty{0%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(8deg)}100%{transform:translateY(0) rotate(0deg)}}
+
+/* Heart pulse for read status */
+.read-heart{display:inline-flex;align-items:center;justify-content:center;color:#ff6b9a;margin-left:6px}
+.read-heart svg{width:14px;height:14px}
+.pulse{animation:heartPulse 900ms ease-in-out infinite}
+@keyframes heartPulse{0%{transform:scale(0.9);opacity:0.9}50%{transform:scale(1.14);opacity:1}100%{transform:scale(0.9);opacity:0.9}}
+
+/* Subtle sway for message bubbles to feel intimate */
+.message .content{transition:transform 400ms ease, box-shadow 300ms ease}
+.message:hover .content{transform:translateY(-4px) rotate(-0.6deg); box-shadow:0 14px 30px rgba(0,0,0,0.45)}
+
+/* Selected item style already exists, add lover color */
+.user-picker .dropdown button.selected { background: rgba(255,99,132,0.12); color: #ffd6e0 }
+.chat-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.03)}
+.messages{padding:20px;min-height:320px;max-height:60vh;overflow:auto}
+.message{margin-bottom:12px;display:inline-block;max-width:70%}
+.message.mine{align-self:flex-end;text-align:right}
+.message .sender{font-size:12px;color:var(--muted);margin-bottom:4px}
+.message .content{background:linear-gradient(90deg,var(--card), rgba(124,58,237,0.15));padding:10px 14px;border-radius:12px}
+.composer{display:flex;padding:14px;border-top:1px solid rgba(255,255,255,0.03);gap:8px}
+.composer input{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+.composer button{padding:10px 16px;border-radius:10px;border:none;background:var(--accent);color:white}
+
+/* Message status ticks */
+.message-meta { margin-left: auto }
+.status-icon { display:flex; align-items:center; gap:6px; color:var(--muted); font-size:12px; transition: color 200ms ease, transform 200ms ease }
+.status-icon .icon { opacity:0.24; transform: translateY(-2px); transition: opacity 180ms ease, transform 180ms ease }
+.status-icon.sent .icon.single { opacity:1; transform: translateY(0); color: var(--muted) }
+.status-icon.delivered { color: #60a5fa }
+.status-icon.delivered .icon { opacity:1; transform: translateY(0) }
+.status-icon.read { color: #34d399 }
+.status-icon.read .icon { opacity:1; transform: translateY(0) }
+
+/* subtle pop animation on status change */
+.status-icon.delivered .icon { transform: translateY(0) scale(1.04); }
+.status-icon.read .icon { transform: translateY(0) scale(1.08); filter: drop-shadow(0 2px 6px rgba(52,211,153,0.08)); }
+.status-icon .icon { transition: transform 220ms cubic-bezier(.2,.9,.3,1), opacity 180ms ease }
+.status-icon .icon.single { margin-right: -6px }
+
+/* Searchable dropdown */
+.user-picker { position: relative }
+.user-picker .dropdown { position: absolute; left: 0; right: 0; top: 40px; background: var(--card); border-radius: 8px; max-height: 200px; overflow: auto; box-shadow: 0 6px 20px rgba(2,6,23,0.6); z-index: 20 }
+.user-picker .dropdown button { display:block; width:100%; text-align:left; padding:8px 12px; border:none; background:transparent; color:inherit }
+.user-picker .dropdown button:hover { background: rgba(255,255,255,0.02) }
+.user-picker .dropdown button.selected { background: rgba(124,58,237,0.12); color: white }
+.user-picker .dropdown button:focus { outline: none; background: rgba(255,255,255,0.03) }
+
+.message.mine .status-icon { margin-left: 8px }
+
+/* Typing indicator styles */
+.typing-indicator { display:flex; align-items:center; gap:6px }
+.typing-indicator .dot { display:inline-block }
+

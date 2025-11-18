@@ -1,0 +1,24 @@
+{
+  "name": "daneth-messenger-client",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "socket.io-client": "^4.7.2",
+    "axios": "^1.4.0",
+    "react-router-dom": "^6.18.0",
+    "framer-motion": "^10.12.16",
+    "three": "^0.164.0",
+    "@react-three/fiber": "^8.14.9",
+    "gsap": "^3.12.2"
+  },
+  "devDependencies": {
+    "vite": "^5.1.0"
+  }
+}

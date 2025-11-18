@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Set Auth (Daneth Messenger)</title>
+  <style>body{font-family:Inter,Segoe UI,Roboto,Arial;background:#071322;color:#e6eef8;display:flex;align-items:center;justify-content:center;height:100vh;margin:0} .card{background:#071a2b;padding:24px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.6);max-width:680px;width:100%} input{width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit} button{margin-top:10px;padding:8px 12px;border-radius:6px;border:none;background:#7c3aed;color:#fff}</style>
+</head>
+<body>
+  <div class="card">
+    <h2>Set Auth Token (Dev helper)</h2>
+    <p>Click to set the test token and user into localStorage and open the app.</p>
+    <label>Token (auto-filled)</label>
+    <textarea id="token" style="height:80px">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MWI2MTAxYWQ2Y2RjZGE0YzdlZWJjYiIsInVzZXJuYW1lIjoiYWxpY2UiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNzYzNDA2OTIwLCJleHAiOjE3NjQwMTE3MjB9.walPIH8s3wNFxwbHLLzuVJJBpnSYCXZ8kPSGEijnaSQ</textarea>
+    <label>User JSON</label>
+    <textarea id="user" style="height:60px">{"id":"691b6101ad6cdcda4c7eebcb","username":"alice","isAdmin":false}</textarea>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button id="apply">Set and Open App</button>
+      <button id="clear">Clear Auth</button>
+    </div>
+    <p style="margin-top:10px;font-size:13px;color:#9ca3af">This file is for local development only. It will store the token in <code>localStorage</code> under <code>dm_token</code> and <code>dm_user</code>.</p>
+  </div>
+
+<script>
+document.getElementById('apply').addEventListener('click', ()=>{
+  try{
+    const token = document.getElementById('token').value.trim();
+    const user = JSON.parse(document.getElementById('user').value);
+    if(!token){ alert('Token is empty') ; return }
+    localStorage.setItem('dm_token', token);
+    localStorage.setItem('dm_user', JSON.stringify(user));
+    alert('Token set — opening app')
+    window.location.href = '/'
+  }catch(e){ alert('Invalid user JSON') }
+})
+
+document.getElementById('clear').addEventListener('click', ()=>{
+  localStorage.removeItem('dm_token');
+  localStorage.removeItem('dm_user');
+  alert('Cleared');
+})
+</script>
+</body>
+</html>
